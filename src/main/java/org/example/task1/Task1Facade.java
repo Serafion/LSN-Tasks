@@ -7,7 +7,7 @@ public class Task1Facade {
 
     InputHandler inputHandler;
     Calculator calculator;
-    Printer printer;
+
 
     public Task1Facade(Scanner scanner) {
         this.inputHandler = new InputHandler(scanner);

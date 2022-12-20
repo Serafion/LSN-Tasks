@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +42,29 @@ class Task2FacadeTest {
         //When
         try (InputStream in = new ByteArrayInputStream(input.getBytes())) {
             System.setIn(in);
-            new Task2Facade().processList();
+            new Task2Facade(new Scanner(System.in)).processList();
+        }
+
+        //Then
+        Assertions.assertEquals(result, out.toString());
+
+
+    }
+
+    @Test
+    void simpleTest2() throws IOException {
+
+        //Given
+        String input = "5 8 2 11 1 4 6 7 13 0";
+        String result = "0 13\r\n" +
+                "2 11\r\n" +
+                "5 8\r\n" +
+                "6 7";
+
+        //When
+        try (InputStream in = new ByteArrayInputStream(input.getBytes())) {
+            System.setIn(in);
+            new Task2Facade(new Scanner(System.in)).processList();
         }
 
         //Then
