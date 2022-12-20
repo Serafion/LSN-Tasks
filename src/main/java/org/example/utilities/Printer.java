@@ -1,7 +1,9 @@
-package org.example.task1;
+package org.example.utilities;
+
+import org.example.task1.Result;
 
 public class Printer {
-    public void printResult(Result result) {
+    public static void printTask1Result(Result result) {
 
         System.out.println(result.numbers().toString().replaceAll("[\\[|\\]|,]",""));
         System.out.println("count: "+result.count());
@@ -9,4 +11,6 @@ public class Printer {
         System.out.println("min: "+result.min());
         System.out.print("max: "+result.max());
     }
+
+
 }
