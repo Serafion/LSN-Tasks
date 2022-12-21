@@ -1,6 +1,6 @@
 package org.example.task2;
 
-public class Pair {
+class Pair {
 
     Integer value1;
     Integer value2;

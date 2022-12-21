@@ -26,6 +26,10 @@ public class Printer {
         }
     }
 
+    public static void printTask3Result(Integer number){
+        System.out.print(number);
+    }
+
 
 
 

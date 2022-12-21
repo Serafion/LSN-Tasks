@@ -1,10 +1,7 @@
 package org.example.task2;
 
 import org.example.task1.Task1Facade;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.*;
 import java.util.Scanner;
@@ -17,8 +14,10 @@ class Task2FacadeTest {
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
+
     @BeforeEach
     void setUp() {
+        System.setIn(inputStream);
         System.setOut(new PrintStream(out));
     }
 
@@ -42,7 +41,7 @@ class Task2FacadeTest {
         //When
         try (InputStream in = new ByteArrayInputStream(input.getBytes())) {
             System.setIn(in);
-            new Task2Facade(new Scanner(System.in)).processList();
+            new Task2Facade().processList();
         }
 
         //Then
@@ -64,7 +63,7 @@ class Task2FacadeTest {
         //When
         try (InputStream in = new ByteArrayInputStream(input.getBytes())) {
             System.setIn(in);
-            new Task2Facade(new Scanner(System.in)).processList();
+            new Task2Facade().processList();
         }
 
         //Then

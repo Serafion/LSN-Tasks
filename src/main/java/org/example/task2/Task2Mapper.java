@@ -3,7 +3,7 @@ package org.example.task2;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Task2Mapper {
+ class Task2Mapper {
 
     public static List<List<Integer>> mapToList(Task2Result task2Result){
         List<List<Integer>> resultList = new ArrayList<>();
