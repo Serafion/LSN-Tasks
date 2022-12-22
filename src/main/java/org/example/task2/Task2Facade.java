@@ -3,16 +3,14 @@ package org.example.task2;
 import org.example.utilities.InputHandler;
 import org.example.utilities.Printer;
 
-import java.util.Scanner;
-
 
 public class Task2Facade {
 
-    InputHandler inputHandler;
-    Calculator calculator;
+    private InputHandler inputHandler;
+    private Calculator calculator;
 
-    public Task2Facade() {
-        this.inputHandler = new InputHandler(new Scanner(System.in));
+    public Task2Facade(InputHandler inputHandler) {
+        this.inputHandler = inputHandler;
         this.calculator = new Calculator();
 
     }

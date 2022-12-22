@@ -1,5 +1,7 @@
 package org.example.task2;
 
+import java.util.Objects;
+
 class Pair {
 
     Integer value1;
@@ -16,5 +18,18 @@ class Pair {
 
     public Integer getValue2() {
         return value2;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pair pair = (Pair) o;
+        return Objects.equals(value1, pair.value1) && Objects.equals(value2, pair.value2);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value1, value2);
     }
 }

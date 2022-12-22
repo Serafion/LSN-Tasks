@@ -8,11 +8,15 @@ import java.util.List;
     public static List<List<Integer>> mapToList(Task2Result task2Result){
         List<List<Integer>> resultList = new ArrayList<>();
         for (Pair p: task2Result.getPairs()) {
-            List<Integer> result = new ArrayList<>();
-            result.add(p.value1);
-            result.add(p.value2);
-            resultList.add(result);
+            addToResultList(resultList, p);
         }
         return resultList;
     }
-}
+
+     private static void addToResultList(List<List<Integer>> resultList, Pair p) {
+         List<Integer> result = new ArrayList<>();
+         result.add(p.value1);
+         result.add(p.value2);
+         resultList.add(result);
+     }
+ }

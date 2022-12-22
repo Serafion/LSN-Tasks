@@ -1,18 +1,24 @@
 package org.example.task2;
 
-import org.example.task1.Task1Facade;
-import org.junit.jupiter.api.*;
+import org.example.utilities.InputHandler;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class Task2FacadeTest {
 
     private final InputStream inputStream = System.in;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
+
+    InputHandler inputHandler = mock(InputHandler.class);
 
 
     @BeforeEach
@@ -29,8 +35,7 @@ class Task2FacadeTest {
 
 
     @Test
-    void simpleTest() throws IOException {
-
+    void testSystemOut() throws IOException {
         //Given
         String input = "1 2 10 7 5 3 6 6 13 0";
         String result = "0 13\r\n" +
@@ -40,8 +45,8 @@ class Task2FacadeTest {
 
         //When
         try (InputStream in = new ByteArrayInputStream(input.getBytes())) {
-            System.setIn(in);
-            new Task2Facade().processList();
+            Scanner scanner = new Scanner(in);
+            new Task2FacadeConfiguration().task2Facade(scanner).processList();
         }
 
         //Then
@@ -51,23 +56,19 @@ class Task2FacadeTest {
     }
 
     @Test
-    void simpleTest2() throws IOException {
-
+    void simpleTest2() {
         //Given
-        String input = "5 8 2 11 1 4 6 7 13 0";
+        when(inputHandler.getStringInput()).thenReturn("5 8 2 11 1 4 6 7 13 0");
         String result = "0 13\r\n" +
                 "2 11\r\n" +
                 "5 8\r\n" +
                 "6 7";
 
-        //When
-        try (InputStream in = new ByteArrayInputStream(input.getBytes())) {
-            System.setIn(in);
-            new Task2Facade().processList();
-        }
-
-        //Then
-        Assertions.assertEquals(result, out.toString());
+//        //When
+//        Task2Result result = new
+//
+//        //Then
+//        Assertions.assertEquals(result, out.toString());
 
 
     }

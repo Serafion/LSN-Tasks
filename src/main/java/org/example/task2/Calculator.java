@@ -1,15 +1,13 @@
 package org.example.task2;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 class Calculator {
 
     private final int GIVEN_SUM_VALUE = 13;
-    Task2Result result = new Task2Result();
+    private Task2Result result = new Task2Result();
 
     Task2Result calculatePairs(String input){
         List<Integer> numbers = fetchNumbersList(input);

@@ -5,28 +5,22 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.io.*;
 import java.util.List;
-import java.util.Scanner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
 public class Task3FacadeTest {
 
     private final InputStream inputStream = System.in;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
-    @Mock
+
     InputHandler inputHandler = mock(InputHandler.class);
 
     @BeforeEach
@@ -42,11 +36,10 @@ public class Task3FacadeTest {
 
 
     @Test
-    void simpleTest() throws IOException {
-
+    void testExactSystemOut() throws IOException {
         //Given
         when(inputHandler.getInt()).thenReturn(3);
-        when(inputHandler.getStringList(any())).thenReturn(List.of("2 3","1 2","5 6"));
+        when(inputHandler.getStringList(any())).thenReturn(List.of("2 3", "1 2", "5 6"));
         String input = "3\r\n2 3\r\n1 2\r\n5 6\r\n";
         String result = "2";
 
@@ -59,62 +52,58 @@ public class Task3FacadeTest {
 
         //Then
         Assertions.assertEquals(result, out.toString());
-
-
     }
 
     @Test
-    void simpleTest2() {
-
+    void testSingleGraph() {
         //Given
         when(inputHandler.getInt()).thenReturn(3);
-        when(inputHandler.getStringList(any())).thenReturn(List.of("2 3","1 2","3 4"));
-        String result = "1";
-
+        when(inputHandler.getStringList(any())).thenReturn(List.of("2 3", "1 2", "3 4"));
 
         //When
-        new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
+        Integer result = new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
 
         //Then
-        Assertions.assertEquals(result, out.toString());
-
-
+        assertThat(result).isEqualTo(1);
     }
 
     @Test
-    void simpleTest3() {
+    void testSingleGraphDifferentNumbers() {
 
         //Given
         when(inputHandler.getInt()).thenReturn(3);
-        when(inputHandler.getStringList(any())).thenReturn(List.of("2 7","1 2","7 15"));
-        String result = "1";
-
+        when(inputHandler.getStringList(any())).thenReturn(List.of("2 7", "1 2", "7 15"));
 
         //When
-        new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
+        Integer result = new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
 
         //Then
-        Assertions.assertEquals(result, out.toString());
-
-
+        assertThat(result).isEqualTo(1);
     }
 
     @Test
-    void simpleTest4() {
-
+    void testSingleGraphLong2() {
         //Given
         when(inputHandler.getInt()).thenReturn(3);
-        when(inputHandler.getStringList(any())).thenReturn(List.of("2 7","1 2","7 15","15 1","15 2"));
-        String result = "1";
-
+        when(inputHandler.getStringList(any())).thenReturn(List.of("2 7", "1 2", "7 15", "15 1", "15 2"));
 
         //When
-        new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
+        Integer result = new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
 
         //Then
-        Assertions.assertEquals(result, out.toString());
-
-
+        assertThat(result).isEqualTo(1);
     }
 
+    @Test
+    void testForCreating4Graphs() {
+        //Given
+        when(inputHandler.getInt()).thenReturn(8);
+        when(inputHandler.getStringList(any())).thenReturn(List.of("1 2", "2 3", "5 6", "6 7", "3 4","10 11","11 12","20 21"));
+
+        //When
+        Integer result = new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
+
+        //Then
+        assertThat(result).isEqualTo(4);
+    }
 }

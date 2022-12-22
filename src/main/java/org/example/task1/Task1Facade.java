@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class Task1Facade {
 
-    InputHandler inputHandler;
-    Calculator calculator;
+    private InputHandler inputHandler;
+    private Calculator calculator;
 
 
     public Task1Facade(Scanner scanner) {
