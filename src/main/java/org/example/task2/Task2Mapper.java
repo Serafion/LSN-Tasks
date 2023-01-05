@@ -15,8 +15,8 @@ import java.util.List;
 
      private static void addToResultList(List<List<Integer>> resultList, Pair p) {
          List<Integer> result = new ArrayList<>();
-         result.add(p.value1);
-         result.add(p.value2);
+         result.add(p.getValue1());
+         result.add(p.getValue2());
          resultList.add(result);
      }
  }

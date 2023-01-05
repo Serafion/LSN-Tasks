@@ -2,10 +2,10 @@ package org.example.task2;
 
 import java.util.Objects;
 
-class Pair {
+class Pair implements Comparable<Pair> {
 
-    Integer value1;
-    Integer value2;
+    private Integer value1;
+    private Integer value2;
 
     public Pair(Integer value1, Integer value2) {
         this.value1 = value1;
@@ -20,6 +20,14 @@ class Pair {
         return value2;
     }
 
+    public void setValue1(Integer value1) {
+        this.value1 = value1;
+    }
+
+    public void setValue2(Integer value2) {
+        this.value2 = value2;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -31,5 +39,10 @@ class Pair {
     @Override
     public int hashCode() {
         return Objects.hash(value1, value2);
+    }
+
+    @Override
+    public int compareTo(Pair o) {
+        return Integer.compare(getValue1(),o.getValue1());
     }
 }

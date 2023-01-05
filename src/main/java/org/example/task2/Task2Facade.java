@@ -16,7 +16,6 @@ public class Task2Facade {
     }
 
     public Task2Facade(Calculator calculator) {
-
         this.calculator = calculator;
     }
 

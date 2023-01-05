@@ -2,13 +2,13 @@ package org.example.task2;
 
 import org.example.utilities.InputHandler;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
 import java.util.Scanner;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -50,7 +50,7 @@ class Task2FacadeTest {
         }
 
         //Then
-        Assertions.assertEquals(result, out.toString());
+      assertThat(result).isEqualTo(out.toString());
 
 
     }
@@ -64,11 +64,11 @@ class Task2FacadeTest {
                 "5 8\r\n" +
                 "6 7";
 
-//        //When
-//        Task2Result result = new
-//
-//        //Then
-//        Assertions.assertEquals(result, out.toString());
+        //When
+        new Task2Facade(inputHandler).processList();
+
+        //Then
+        assertThat(result).isEqualTo(out.toString());
 
 
     }
