@@ -106,4 +106,19 @@ public class Task3FacadeTest {
         //Then
         assertThat(result).isEqualTo(4);
     }
+
+    @Test
+    void testForCreating1Graph() {
+        //Given
+        when(inputHandler.getInt()).thenReturn(3);
+        when(inputHandler.getStringList(any())).thenReturn(List.of("1 2", "3 4", "1 3"));
+
+        //When
+        Integer result = new Task3FacadeConfiguration().task3FacadeForTest(inputHandler).fetchDistinctGraphsCount();
+
+        //Then
+        assertThat(result).isEqualTo(1);
+    }
+
+
 }

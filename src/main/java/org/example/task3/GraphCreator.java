@@ -1,21 +1,22 @@
 package org.example.task3;
 
+import java.util.Collection;
 import java.util.List;
 
 public class GraphCreator {
 
-    Graph createGraph(List<Nodes> nodes){
+    Graph createGraph(Collection<Nodes> nodes){
         boolean addingPhase = true;
         List<Nodes> copy = List.copyOf(nodes);
         Graph graph = initializeNewGraph(copy);
 
         while(addingPhase && !nodes.isEmpty()){
-            for(int i = 0; i< copy.size(); i++){
-                addingPhase =false;
-                Nodes node = copy.get(i);
-                if(checkIfNodeIsAddableToGraph(graph, node)){
+            for (Nodes value : copy) {
+                addingPhase = false;
+                Nodes node = value;
+                if (checkIfNodeIsAddableToGraph(graph, node)) {
                     graph.addNode(node);
-                    addingPhase =true;
+                    addingPhase = true;
                 }
             }
         }
@@ -31,7 +32,9 @@ public class GraphCreator {
 
     private boolean checkIfNodeIsAddableToGraph(Graph graph, Nodes node) {
         return containsEnd(graph, node) ||
-               containsNode(graph, node);
+               containsNode(graph, node) ||
+               containsNode2(graph,node) ||
+               containsEnd2(graph, node) ;
     }
 
     private boolean containsNode(Graph graph, Nodes node) {
